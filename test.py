@@ -25,7 +25,7 @@ class SeleniumTkinterApp:
         self.label_chosen_date = ttk.Label(root, text="Chosen Date:")
 
         self.entry_username = ttk.Entry(root)
-        self.entry_username.insert(0, "TRAFCONMJ3")
+        self.entry_username.insert(0, "")
         self.entry_password = ttk.Entry(root, show="*")
 
         self.chosen_date_var = tk.StringVar()
@@ -131,9 +131,9 @@ class SeleniumTkinterApp:
             driver.execute_script("arguments[0].scrollIntoView(true);", new_page_element)
 
             try:
-                new_page_element.click()  # Try normal click
+                new_page_element.click()  # normal click
             except:
-                driver.execute_script("arguments[0].click();", new_page_element)  # Use JavaScript click if normal click is intercepted
+                driver.execute_script("arguments[0].click();", new_page_element)
 
             # Wait for the submenu to be clickable
             submenu_xpath = '/html/body/div[5]/nav/div/ul/li[6]/ul/li[2]/a'
@@ -141,7 +141,6 @@ class SeleniumTkinterApp:
                 EC.element_to_be_clickable((By.XPATH, submenu_xpath))
             )
 
-            # Again, try to click or use JavaScript to click if intercepted
             try:
                 submenu_element.click()
             except:
